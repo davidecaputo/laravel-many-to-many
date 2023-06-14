@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Work;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Language;
 use App\Models\Type;
 use Illuminate\Support\Str;
 
@@ -29,7 +30,8 @@ class WorkController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('admin.create', compact('types'));
+        $languages = Language::all();
+        return view('admin.create', compact('types', 'languages'));
     }
 
     /**

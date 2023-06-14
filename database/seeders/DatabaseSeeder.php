@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call([
             WorkSeeder::class,
-            TypeSeeder::class
+            TypeSeeder::class,
+            LanguageSeeder::class
       ]);
     }
 }

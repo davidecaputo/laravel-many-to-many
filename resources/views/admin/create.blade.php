@@ -19,7 +19,7 @@
                 </nav>
             </div>
         </div>
-        <div class="sidebar-right bg-dark-subtle">
+        <div class="sidebar-right bg-dark-subtle pb-5">
             <h1 class="text-center py-4">Inscerisci un nuovo lavoro</h1>
             <div class="container bg-success p-5 rounded-5 mb-5">
                 <form action="{{ route('admin.works.store') }}" method="POST" class="text-white">
@@ -41,14 +41,25 @@
                         <select class="form-select" name="type_id" id="type_id">
                             <option value="" selected>Seleziona</option>
                             @foreach ($types as $type)
-                                <option value="{{ $type->id }}">{{ $type->name }}</option>
+                            <option value="{{ $type->id }}">{{ $type->name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-floating mb-3">
                         <textarea class="form-control" placeholder="Leave a comment here" name="description" id="description"
-                            style="height: 100px"></textarea>
+                        style="height: 100px"></textarea>
                         <label for="description">Descrizione</label>
+                    </div>
+                    <div class="mb-3">
+                        <p>Linguaggi:</p>
+                        @foreach ($languages as $language)
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" name="languages[]" id="language" value="{{$language->id}}">
+                            <label class="form-check-label" for="language">
+                                {{ $language->name }}
+                            </label>
+                        </div>
+                        @endforeach
                     </div>
                     <button type="submit" class="btn btn-primary">Invio</button>
                     <button type="reset" class="btn btn-primary">Reset</button>
