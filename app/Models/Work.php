@@ -14,4 +14,8 @@ class Work extends Model
     public function type(){
         return $this->belongsTo(Type::class);
     }
+
+    public function languages(){
+        return $this->belongsToMany(Language::class);
+    }
 }
