@@ -50,6 +50,19 @@
                         <textarea class="form-control" placeholder="Leave a comment here" name="description" id="description" style="height: 100px">{{$work->description}}</textarea>
                         <label for="description">Descrizione</label>
                     </div>
+                    <div class="mb-3">
+                        <p>Linguaggi:</p>
+                        <div class="d-flex flex-wrap gap-4">
+                            @foreach ($languages as $language)
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" name="languages[]" id="language" value="{{$language->id}}" {{ $work->languages->contains($language) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="language">
+                                    {{ $language->name }}
+                                </label>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
                     <button type="submit" class="btn btn-primary">Invio</button>
                 </form>
             </div>

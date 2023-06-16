@@ -52,14 +52,16 @@
                     </div>
                     <div class="mb-3">
                         <p>Linguaggi:</p>
-                        @foreach ($languages as $language)
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="checkbox" name="languages[]" id="language" value="{{$language->id}}">
-                            <label class="form-check-label" for="language">
-                                {{ $language->name }}
-                            </label>
+                        <div class="d-flex flex-wrap gap-4">
+                            @foreach ($languages as $language)
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" name="languages[]" id="language" value="{{$language->id}}">
+                                <label class="form-check-label" for="language">
+                                    {{ $language->name }}
+                                </label>
+                            </div>
+                            @endforeach
                         </div>
-                        @endforeach
                     </div>
                     <button type="submit" class="btn btn-primary">Invio</button>
                     <button type="reset" class="btn btn-primary">Reset</button>

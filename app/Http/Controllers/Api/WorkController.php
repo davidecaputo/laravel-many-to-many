@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class WorkController extends Controller
 {
     public function index(){
-        $works = Work::with('type')->paginate(4);
+        $works = Work::with('type', 'languages')->paginate(4);
         return response()->json([
             'success' => true,
             'results' => $works

@@ -45,6 +45,10 @@ class WorkController extends Controller
         $data = $request->all();
         $data['slug'] = Str::slug($data['name'], '-');
         $newWork = Work::create($data);
+        if($request->has('languages')){
+            $newWork->languages()->attach($request->languages);
+            dd($newWork);
+        }
         return redirect()->route('admin.works.show', $newWork->slug)->with('message', "Il lavoro: \"$newWork->name\" è stato creato con successo");
     }
 
@@ -68,7 +72,8 @@ class WorkController extends Controller
     public function edit(Work $work)
     {
         $types = Type::all();
-        return view('admin.edit', compact('work', 'types'));
+        $languages = Language::all();
+        return view('admin.edit', compact('work', 'types', 'languages'));
     }
 
     /**
@@ -82,6 +87,11 @@ class WorkController extends Controller
     {
         $data = $request->all();
         $work->update($data);
+        if($request->has('languages')){
+            $work->languages()->sync($request->languages);
+        } else {
+            $work->languages()->sync([]);
+        }
         return redirect()->route('admin.works.show', $work->slug)->with('message', "Il lavoro: \"$work->name\" è stato modificato con successo");;
     }
 
