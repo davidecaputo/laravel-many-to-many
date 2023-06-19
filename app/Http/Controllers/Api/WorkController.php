@@ -15,4 +15,19 @@ class WorkController extends Controller
             'results' => $works
         ]);
     }
+
+    public function show($slug){
+        $work = Work::with('type', 'languages')->where('slug', '=', $slug)->first();
+        if($work){
+            return response()->json([
+                'success' => true,
+                'results' => $work
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'results' => 'Errore'
+            ]);
+        }
+    }
 }
